@@ -19,6 +19,7 @@ const root = {student: () =>{
     "email": [
       {"email": "h1@turbo.com"},
       {"email": "h2@turbo.com"},
+      {"email": "h3@turbo.com"},
     ]
   }
 }};
