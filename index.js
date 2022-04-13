@@ -15,7 +15,11 @@ const root = {student: () =>{
     "rule": 10,
     "gender": "male",
     "age": 2,
-    "classCaptain": false
+    "classCaptain": false,
+    "email": [
+      {"email": "h1@turbo.com"},
+      {"email": "h2@turbo.com"},
+    ]
   }
 }};
 

@@ -8,6 +8,11 @@ const schema = buildSchema(`
       gender: String
       age: Int
       classCaptain: Boolean
+      email: [Email]!
+    }
+
+    type Email {
+      email: String
     }
 
     type Query {
