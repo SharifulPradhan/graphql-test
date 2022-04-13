@@ -2,21 +2,31 @@ import { buildSchema } from "graphql";
 
 const schema = buildSchema(`
     type Student {
+      id: ID
       name: String
-      class: Int
       rule: Int
       gender: String
       age: Int
       classCaptain: Boolean
-      email: [Email]!
-    }
-
-    type Email {
       email: String
     }
 
     type Query {
       student: Student
+    }
+
+    input StudentInput {
+      id: ID
+      name: String
+      rule: Int
+      gender: String
+      age: Int
+      classCaptain: Boolean
+      email: String
+    }
+
+    type Mutation {
+      createStudent(input: StudentInput): Student
     }
 `
 );

@@ -4,25 +4,42 @@ import { graphqlHTTP } from 'express-graphql';
 
 const app = express();
 
-app.get('/', (req, res)=> {
+app.get('/', (req, res) => {
   res.send('Graphql is amazing:');
 });
 
-const root = {student: () =>{
-  return {
-    "name": "Tony Mark",
-    "class": 1,
-    "rule": 10,
-    "gender": "male",
-    "age": 2,
-    "classCaptain": false,
-    "email": [
-      {"email": "h1@turbo.com"},
-      {"email": "h2@turbo.com"},
-      {"email": "h3@turbo.com"},
-    ]
+const studentDatabase = {};
+
+class Student {
+  constructor(id, { name, rule, gender, age, classCaptain, email }) {
+    this.id = id;
+    this.name = name;
+    this.rule = rule;
+    this.gender = gender;
+    this.age = age;
+    this.classCaptain = classCaptain;
+    this.email = email;
   }
-}};
+}
+
+const root = {
+  student: () => {
+    return {
+      "id": 45687925,
+      "name": "Tony Mark",
+      "rule": 10,
+      "gender": "male",
+      "age": 2,
+      "classCaptain": false,
+      "email": "h1@turbo.com",
+    }
+  },
+  createFriend: ({input}) => {
+    let id = require('crypto').randomBytes(10).toString('hex');
+    studentDatabase[id] = input;
+    return new Student(id, input);
+  }
+};
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,
